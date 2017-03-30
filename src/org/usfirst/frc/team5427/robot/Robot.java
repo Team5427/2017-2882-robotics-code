@@ -31,13 +31,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
-
-import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
-import org.usfirst.frc.team5427.robot.network.Client;
-//import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
-import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
 import org.usfirst.frc.team5427.robot.subsystems.*;
 
 /**
@@ -100,12 +94,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public static SpeedController motorPWM_Flywheel;
 	public static SpeedController motorPWM_Flywheel2;
-	/**
-	 * Launcher subsystem to shoot balls from the shooting mechanism
-	 */
-	public static Launcher launcher;
-	/**
-	 * Rope Climb subsystem launcher for the robot to climb the rope
+
+	 /** Rope Climb subsystem launcher for the robot to climb the rope
 	 */
 	public static RopeClimb ropeClimb;
 	/**
@@ -117,77 +107,11 @@ public class Robot extends IterativeRobot {
 	 * Drive command to drive the robot
 	 */
 	public static Drive drive;
-	/**
-	 * Command that sets the intake speed of the robot 
-	 * NOTE: Currently unused, but if we do decide to use it, the command below can be made to reun for the 
-	 * entire teleop period and.or the entire autonomous period
-	 */
-	public static SetIntakeSpeed si;
 
-	/**
-	 * Intake subsystem to intake balls into the robot
-	 */
-	public static Intake intake;
 	
-	/**
-	 * Agitator subsystem to spin balls inside the robot
-	 */
-	public static Agitator agitator;
-	
-	public static DigitalInput limitSwitchDoorOpened;
-	public static DigitalInput limitSwitchDoorClosed;
-	/**
-	 * Flap subsystem
-	 */
-	public static MultiFlap myFlap;
-	
-	/**
-	 * Client for networking
-	 */
-	public static Client client;
-
-	/**
-	 * Network interpreter
-	 */
-	public static SteamworkInterpreter swip;
 	
 	Command autonomousCommand;
-	//SendableChooser<Command> chooser = new SendableChooser<>();
-
-	/* -------Sensors------- */
-	/**DIO ports for the ultrasonic sensor*/
-	public static DigitalInput digI = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
-	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
-	/** Ultrasonic Range Finder to find the distance between the sensor and target*/
-	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
-	/**Gyro for autonomous*/
-	public static ADXRS450_Gyro gyro;
-
-	/**
-	 * Camera server
-	 */
-	//public static CameraServer server;
-//	public static RobotCameras roboCams;
-	/**
-	 * USB Cameras for robot
-	 */
-//	public static UsbCamera usbCam0, usbCam1;
-
-	/**
-	 * IP Camera
-	 */
-	//public static AxisCamera axisCam;
-
-	
-	public static Client c;
-
-	/** Current camera in use*/
-	public static int currentCamera = 0;
-	
-	// NI USB interface numbers for the cameras
-	// int devForCam0=2,devForCam1=3;
-
-	/**
+		/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
@@ -232,11 +156,7 @@ public class Robot extends IterativeRobot {
 		//motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
 		
 		
-//		/** Initialize Steel Spark Motors */
-//		Log.init("Initializing SteelSpark Motors");
-//		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
-		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
-		motorPWM_Flap = new SteelSpark(Config.FLAP_MOTOR,0,0);
+//	
 
 		
 		/**Initialize Drive Train*/
@@ -247,101 +167,16 @@ public class Robot extends IterativeRobot {
 
 		Log.init("Initialized all SteelTalon Motors!");
 
-		/* Initialize limit switches */
-		Log.init("Initializing Limit Switches");
-		limitSwitchDoorOpened = new DigitalInput(Config.DIO_FLAP_OPENED);
-		limitSwitchDoorClosed = new DigitalInput(Config.DIO_FLAP_CLOSED);
-
 		/* Initialize Subsystems */
 
 		Log.init("Initializing Subsystems");
 
-		Log.init("Initializing Launcher subsystem");
-		launcher = new Launcher(motorPWM_Flywheel);
-		Log.init("Launcher subsystem Initialized!");
-
+		
 		Log.init("Initializing RopeClimb subsystem");
 		ropeClimb = new RopeClimb(motorPWM_Flywheel2);
 		Log.init("RopeClimb subsystem initialized!");
 
-		Log.init("Initializing Intake subsystem");
-		intake = new Intake(motorPWM_Intake);
-		Log.init("Intake subsystem initialized!");
-		
-		Log.init("Initializing Agitator subsystem");
-		agitator = new Agitator(motorPWM_Agitator);
-		Log.init("Agitator subsystem initialized!");
-		
-		Log.init("Initializing MultiFlap subsytem");
-		myFlap = new MultiFlap(motorPWM_Flap);
-		Log.init("MultiFlap subsystem initialized!");
 
-		/* Initialize Sensor */
-		//TODO Test Cameras
-		// ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
-	//	ultrasonic.setAutomaticMode(true);
-		//ultrasonic.setEnabled(true);
-
-
-	//	Log.init("Ultrasonic initialized!");
-
-//		/** camera code*/
-//		/* initialize cameras */
-//		usbCam0 = new UsbCamera("cam0", 0);
-//		usbCam0.setFPS(15);
-//		usbCam1 = new UsbCamera("cam1", 1);
-//		usbCam1.setFPS(15);
-//		/* initialize server*/
-//		server = CameraServer.getInstance();
-//		roboCams=new RobotCameras(usbCam0, usbCam1);
-
-		// initialize axis cam
-		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		// init usb cam 0 and set fps
-		//usbCam0 = new UsbCamera("cam0", 0);
-		//usbCam0.setFPS(15);
-
-		// creates camera 1 and set fps and adds it to the server
-	//	usbCam1 = new UsbCamera("cam1", 1);
-	//	usbCam1.setFPS(15);
-	//	server.addCamera(usbCam1);
-
-		// adds usb and axis camera to server
-	//	Robot.server.addCamera(usbCam0);
-	//	Robot.server.addCamera(axisCam);
-
-		// start auto capture of camera 0 and camera 1
-	//	server.startAutomaticCapture(usbCam0);
-		//server.startAutomaticCapture(usbCam1);
-		
-		//TODO un-comment camera stuff
-
-		/**
-		 * TODO Add the different chooser selections for autonomous for Left,
-		 * Middle, and Right.
-		 */
-		//chooser = new SendableChooser();
-		
-//		chooser.addDefault("", 0);
-//		chooser.addObject("AutoDriveLeft", 1);
-//		chooser.addObject("AutoDriveMiddle", 2);
-//		chooser.addObject("AutoDriveRight", 3);
-		
-		//SmartDashboard.putData("Auto mode", chooser);
-		
-		
-		//TODO Add a port if need be
-		gyro= new ADXRS450_Gyro();
-		gyro.calibrate();
-		
-		swip =  new SteamworkInterpreter();
-		client = new Client(swip);
-        client.start();
-		
-		Log.init("Initializing OI");
-		oi = new OI();
-		Log.init("OI Initialized!");
-		
 	}
 
 	/**
@@ -374,12 +209,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		
 		Log.info("Autonomous Start!");
-		
-		
-		//Log.info("Gyro was reset!");
-		
-		
-		new AutoDrive(oi.autoChooser.getSelected()).start();
 		
 		//autonomousCommand = chooser.getSelected();
 		
@@ -436,9 +265,6 @@ public class Robot extends IterativeRobot {
 		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
 		drive.start();
 
-		intake = new Intake(motorPWM_Intake);
-		// si=new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
-		// si.start();
 	}
 
 	/**

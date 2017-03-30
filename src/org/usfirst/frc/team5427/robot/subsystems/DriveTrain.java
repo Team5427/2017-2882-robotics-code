@@ -50,8 +50,8 @@ public class DriveTrain extends Subsystem {
 	 * @param speed - The wanted speed of the left side motors.
 	 */
 	public void setLeftSpeed(double speed) {
-		motorPWM_FrontLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
-		motorPWM_RearLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
+//		motorPWM_FrontLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
+//		motorPWM_RearLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class DriveTrain extends Subsystem {
 	public void setRightSpeed(double speed) {
 		Log.debug("Speed: " + speed);
 		motorPWM_FrontRight.set(speed*Config.DRIVE_TRAIN_MULTIPLIER);
-		MOTOR_PWM_BackRight.set(speed*Config.DRIVE_TRAIN_MULTIPLIER);
+//		MOTOR_PWM_BackRight.set(speed*Config.DRIVE_TRAIN_MULTIPLIER);
 	}
 
 	/**
@@ -84,10 +84,10 @@ public class DriveTrain extends Subsystem {
 	 * @param y - Y axis of joystick, positive is backwards
 	 */
 	public void driveJoystick(double z, double y) {
-		if(Math.abs(y)<=Config.DEADSET_DIF)
-			y=0;
-		if(Math.abs(z)<=Config.DEADSET_DIF)
-			z=0;
+//		if(Math.abs(y)<=Config.DEADSET_DIF)
+//			y=0;
+//		if(Math.abs(z)<=Config.DEADSET_DIF)
+//			z=0;
 		z *= .6;
 		y *= 1;
 		/**
