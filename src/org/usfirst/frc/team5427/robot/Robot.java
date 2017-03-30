@@ -31,6 +31,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
+import org.usfirst.frc.team5427.robot.commands.PullRope;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.subsystems.*;
 
@@ -108,6 +109,10 @@ public class Robot extends IterativeRobot {
 	 */
 	public static Drive drive;
 
+	/**
+	 * Pull command to pull the robot
+	 */
+	public static PullRope pull;
 	
 	
 	Command autonomousCommand;
@@ -145,35 +150,20 @@ public class Robot extends IterativeRobot {
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
 		Log.init("Initializing Flywheels...Shooter");
-		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);	
+		motorPWM_Flywheel = new SteelTalon(Config.ROPE_CLIMB_MOTOR_2);	
 		motorPWM_Flywheel2 = new SteelTalon(Config.ROPE_CLIMB_MOTOR);
 		Log.init("Initialized all SteelTalon Motors!");
-			
-		
-		/** Initialize SteelSpark but actually SteelTalon Motors */
-		Log.init("Initializing SteelSpark but actually Talon Motors");
-		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
-		//motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
-		
-		
-//	
-
 		
 		/**Initialize Drive Train*/
 		Log.init("Initializing Drive Train");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
-
-		Log.init("Initialized all SteelTalon Motors!");
-
 		/* Initialize Subsystems */
-
 		Log.init("Initializing Subsystems");
 
-		
 		Log.init("Initializing RopeClimb subsystem");
-		ropeClimb = new RopeClimb(motorPWM_Flywheel2);
+		ropeClimb = new RopeClimb(motorPWM_Flywheel,motorPWM_Flywheel2);
 		Log.init("RopeClimb subsystem initialized!");
 
 
@@ -264,6 +254,10 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
 		drive.start();
+		
+		ropeClimb = new RopeClimb(motorPWM_Flywheel,motorPWM_Flywheel2);
+		pull= new PullRope();
+		pull.start();
 
 	}
 

@@ -14,9 +14,6 @@ import org.usfirst.frc.team5427.robot.Robot;
  */
 public class PullRope extends Command {
 
-	// Holds the speed of the motors used to pull the rope into the robot.
-	private double pullSpeed;
-
 	public PullRope() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.ropeClimb);
@@ -29,20 +26,17 @@ public class PullRope extends Command {
 	 */
 	protected void initialize() {
 		Log.init("Initialized Pull");
-		pullSpeed = Config.PULL_SPEED;
-		Robot.ropeClimb.setPullSpeed(pullSpeed);
+		Robot.ropeClimb.throttleUp();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.ropeClimb.setPullSpeed(pullSpeed);
+		Robot.ropeClimb.throttleUp();
 	}
 
 	//returns true if the button in config is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.PULL_BUTTON))
-			return true;
-		else
+	
 			return false;
 	}
 

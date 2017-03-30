@@ -21,15 +21,17 @@ public class RopeClimb extends Subsystem {
 	 * SpeedControllers which are responsible for the wheels that pull the rope
 	 * into the robot.
 	 */
-	public SpeedController motorPWM_Flywheel;
+	public SpeedController motorPWM_Flywheel_1;
+	public SpeedController motorPWM_Flywheel_2;
 
 	/**
 	 * RopeClimb constructor -- Initializes the motor for the RopeClimb subsystem.
 	 * 
 	 * @param motorFlyWheel - The motor used to control the RopeClimb.
 	 */
-	public RopeClimb(SpeedController motorFlyWheel) {
-		this.motorPWM_Flywheel = motorFlyWheel;
+	public RopeClimb(SpeedController motorPWM_Flywheel_1,SpeedController motorPWM_Flywheel_2) {
+		this.motorPWM_Flywheel_1 = motorPWM_Flywheel_1;
+		this.motorPWM_Flywheel_2=motorPWM_Flywheel_2;
 		Log.init("FINISHED MAKING A NEW RopeClimb");
 	}
 
@@ -44,6 +46,16 @@ public class RopeClimb extends Subsystem {
 	public void stop() {
 		setPullSpeed(0);
 	}
+	
+	public void throttleUp()
+	{
+		if(Robot.oi.getJoy().getThrottle()>0)
+			stop();
+		else if(Robot.oi.getJoy().getThrottle()>=1)
+			setPullSpeed(1);
+		else
+			setPullSpeed(Robot.oi.getJoy().getThrottle());
+	}
 
 	/**
 	 * Sets the speed of the RopeClimb to the desired speed.
@@ -57,6 +69,7 @@ public class RopeClimb extends Subsystem {
 		else if (speed < -1)
 			speed = -1;
 
-		motorPWM_Flywheel.set(speed);
+		motorPWM_Flywheel_1.set(speed);
+		motorPWM_Flywheel_2.set(speed);
 	}
 }

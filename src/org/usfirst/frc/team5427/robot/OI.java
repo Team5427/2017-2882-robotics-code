@@ -75,10 +75,7 @@ public class OI {
 
 	/**button for rope climb*/
 	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
-	/**button for agitator climb*/
-	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
-	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
-	
+		
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
 	/**
@@ -86,6 +83,7 @@ public class OI {
 	 */
 	public OI() {
 		// TODO tie the right buttons to the right commands
+		
 	}
 
 	/**
