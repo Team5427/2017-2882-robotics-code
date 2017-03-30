@@ -1,30 +1,12 @@
 
 package org.usfirst.frc.team5427.robot;
 
-import edu.wpi.cscore.AxisCamera;
-import edu.wpi.cscore.CameraServerJNI;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.MjpegServer;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
-import edu.wpi.cscore.VideoSource;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedController;
-//import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import sun.util.logging.resources.logging;
-import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -122,27 +104,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		// Debug
-		SmartDashboard.putNumber("testval", 1);
-//		SmartDashboard.getNumber("testval", 99);
-		
-		// chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-
-		/** Initialize Networking */
-//		TODO actually use this code
-//		try {
-//			Log.init("Initializing connection to the driver station...");
-//			c = new Client();
-//			c.start();
-//			if (c.isConnected())
-//				Log.init("Connection successfully established with the driver station.");
-//			else
-//				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
-//		} catch (Exception e) {
-//			Log.error(e.getMessage());
-//		}
-		
 		/** Initialize Steel Talon Motors */
 		Log.init("Initializing SteelTalon Motors");
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, Config.OFFSET_FRONT_LEFT_MOTOR_BACKWARD, Config.OFFSET_FRONT_LEFT_MOTOR_FORWARD, Config.BIAS_FRONT_LEFT_MOTOR_BACKWARD, Config.BIAS_FRONT_LEFT_MOTOR_FORWARD);
@@ -150,9 +111,9 @@ public class Robot extends IterativeRobot {
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
 		Log.init("Initializing Flywheels...Shooter");
-		motorPWM_Flywheel = new SteelTalon(Config.ROPE_CLIMB_MOTOR_2);	
-		motorPWM_Flywheel2 = new SteelTalon(Config.ROPE_CLIMB_MOTOR);
-		Log.init("Initialized all SteelTalon Motors!");
+		motorPWM_Flywheel = new SteelSpark(Config.ROPE_CLIMB_MOTOR_2);	
+		motorPWM_Flywheel2 = new SteelSpark(Config.ROPE_CLIMB_MOTOR);
+		Log.init("Initialized all SteelSpark Motors!");
 		
 		/**Initialize Drive Train*/
 		Log.init("Initializing Drive Train");
@@ -197,41 +158,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
 		Log.info("Autonomous Start!");
-		
-		//autonomousCommand = chooser.getSelected();
-		
-		//TODO uncomment auto code
-		//TODO figure out autoChooser
-//		switch((Integer) oi.autoChooser.getSelected()){
-//		
-//		case 1:
-//			autonomousCommand=new AutoDrive(Config.AUTO_LEFT);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 2:
-//			autonomousCommand=new AutoDrive(Config.AUTO_MIDDLE);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 3:
-//			autonomousCommand=new AutoDrive(Config.AUTO_RIGHT);
-//			autonomousCommand.start();
-//			break;
-//			
-//		default:
-//			break;
-//		}
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
 	}
 
 	/**
@@ -267,22 +194,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
-		//TODO uncomment ultrasonic code
-//		Log.init("ultrasonic1");
-//		if (ultrasonic != null) {
-//			// ultrasonic.ping();
-//
-//			Log.init("DiOutput" + digO.get());
-//			Log.init("DiInput" + digI.get());
-//			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
-//			Log.init("" + ultrasonic.getRangeInches());
-//		}
-		/*
-		 * if (ultrasonicAnalogInput != null) {
-		 * SmartDashboard.putNumber("Ultrasonic Sensor (in):",
-		 * ultrasonicAnalogInput.getAverageVoltage()); }
-		 */
 	}
 
 	/**
