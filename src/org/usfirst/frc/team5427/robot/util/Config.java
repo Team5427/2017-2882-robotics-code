@@ -51,8 +51,8 @@ public class Config {
 	public static final int REAR_RIGHT_MOTOR	= 1;
 	public static final int FRONT_LEFT_MOTOR	= 2;
 	public static final int REAR_LEFT_MOTOR 	= 3;
-	public static final int ROPE_CLIMB_MOTOR_2		= 4;	
 	public static final int ROPE_CLIMB_MOTOR    = 7;
+	public static final int ROPE_CLIMB_MOTOR_2	= 4;	
 	
 	/*----------MULTIPLIERS AND DEADSETS----------*/
 	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
@@ -120,19 +120,6 @@ public class Config {
 	public static final double AUTO_FULL_TURN_SPEED_LEFT = .3;	
 
 	
-	/*------------timings for auto-------*/
-	//General Constants
-	public static final double AUTO_GEAR_WAIT_TIME = 3;
-	public static final double AUTO_BACK_OFF_TIME = 0;
-	public static final double AUTO_SHOOT_TIME = 0;
-	public static final double LEFT_TIMEOUT = 60;
-	public static final double MIDDLE_TIMEOUT = 60;
-	public static final double RIGHT_TIMEOUT = 60;
-	public static final double FLAP_OPEN_TIMEOUT = 1;
-	public static final double FLAP_CLOSE_TIMEOUT= 1;
-	public static final double AUTO_DELAY=.6;
-	public static final double MOMENTUM_OFFSET_TURNING_RIGHT=11;
-	public static final double MOMENTUM_OFFSET=6;
 	//Left Side
 	public static final int PULL_BUTTON = 8;
 }
