@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -101,10 +100,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		/** Initialize Steel Talon Motors */
 		Log.init("Initializing SteelTalon Motors");
-		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, Config.OFFSET_FRONT_LEFT_MOTOR_BACKWARD, Config.OFFSET_FRONT_LEFT_MOTOR_FORWARD, Config.BIAS_FRONT_LEFT_MOTOR_BACKWARD, Config.BIAS_FRONT_LEFT_MOTOR_FORWARD);
-		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, Config.OFFSET_REAR_LEFT_MOTOR_BACKWARD, Config.OFFSET_REAR_LEFT_MOTOR_FORWARD, Config.BIAS_REAR_LEFT_MOTOR_BACKWARD, Config.BIAS_REAR_LEFT_MOTOR_FORWARD);
-		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
-		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
+		motorPWM_FrontLeft = new SteelSpark(Config.FRONT_LEFT_MOTOR, Config.OFFSET_FRONT_LEFT_MOTOR_BACKWARD, Config.OFFSET_FRONT_LEFT_MOTOR_FORWARD, Config.BIAS_FRONT_LEFT_MOTOR_BACKWARD, Config.BIAS_FRONT_LEFT_MOTOR_FORWARD);
+		motorPWM_RearLeft = new SteelSpark(Config.REAR_LEFT_MOTOR, Config.OFFSET_REAR_LEFT_MOTOR_BACKWARD, Config.OFFSET_REAR_LEFT_MOTOR_FORWARD, Config.BIAS_REAR_LEFT_MOTOR_BACKWARD, Config.BIAS_REAR_LEFT_MOTOR_FORWARD);
+		motorPWM_FrontRight = new SteelSpark(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
+		motorPWM_RearRight = new SteelSpark(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
 		Log.init("Initializing Flywheels...Shooter");
 		motorPWM_Flywheel2 = new SteelTalon(Config.ROPE_CLIMB_MOTOR);
 		Log.init("Initialized all SteelTalon Motors!");
