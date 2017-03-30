@@ -1,10 +1,10 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.util.Config;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,23 +48,14 @@ public class OI {
 	 */
 	public Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 
-	// Buttons
-	/**
-	 * Switches the camera view
-	 */
-	//public Button switchCameras = new JoystickButton(joy, Config.SWITCH_CAMERAS_BUTTON);
-	/**
-	 * Changes the direction of the intake
-	 */
-	/**button for rope climb*/
-	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
-	/**button for agitator climb*/
+
 	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
 		// TODO tie the right buttons to the right commands
+		
 	}
 
 	/**
