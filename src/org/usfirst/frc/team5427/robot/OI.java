@@ -1,12 +1,12 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.util.Config;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
  * This class is the glue that binds the controls on the physical operator
