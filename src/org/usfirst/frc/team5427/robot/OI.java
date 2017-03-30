@@ -58,28 +58,9 @@ public class OI {
 	/**
 	 * Changes the direction of the intake
 	 */
-	public Button changeIntakeDirection = new JoystickButton(joy, Config.CHANGE_INTAKE_DIRECTION_BUTTON);
-	/**
-	 * Starts the intake
-	 */
-	public Button startIntake = new JoystickButton(joy, Config.START_INTAKE_BUTTON);
-	/**
-	 * Button to shoot the balls
-	 */
-	public Button shooter = new JoystickButton(joy, Config.SHOOT_BUTTON);
-	/**
-	 * Commands for moveable flap
-	 */
-	public Button flapOpen = new JoystickButton(joy, Config.FLAP_OPEN);
-	
-
 	/**button for rope climb*/
 	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
 	/**button for agitator climb*/
-	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
-	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
-	
-	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
