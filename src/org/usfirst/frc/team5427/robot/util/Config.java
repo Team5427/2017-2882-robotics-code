@@ -108,7 +108,6 @@ public class Config {
 	public static final int TWO_JOYSTICKS = 1; // static var for above
 	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either
 															// ONE_JOYSTICK or
-
 	/*------------speed for auto-------*/
 	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -.25;
 	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.30;
@@ -168,7 +167,5 @@ public class Config {
 	public static final double AUTO_RIGHT_TURN_TO_GOAL_TIME =AUTO_RIGHT_BACK_OFF_TIME+ 0;
 	public static final double AUTO_RIGHT_SHOOT_TIME =AUTO_RIGHT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 
-	
-	//Left Side
 	public static final int PULL_BUTTON = 8;
 }
