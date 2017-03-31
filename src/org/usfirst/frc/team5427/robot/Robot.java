@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -13,8 +12,12 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.commands.PullRope;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.subsystems.*;
+
+// New imports
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -157,7 +160,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		Log.info("Autonomous Start!");
+		Log.info("Starting autonomous");
+		
+		autonomousCommand = new AutoDrive(oi.getAutoChooser().getSelected());
+		autonomousCommand.start();
 	}
 
 	/**
@@ -184,7 +190,6 @@ public class Robot extends IterativeRobot {
 		ropeClimb = new RopeClimb(motorPWM_Flywheel,motorPWM_Flywheel2);
 		pull= new PullRope();
 		pull.start();
-
 	}
 
 	/**
@@ -202,5 +207,6 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+
 
 }

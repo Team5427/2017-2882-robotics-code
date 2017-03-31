@@ -1,10 +1,13 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,6 +51,10 @@ public class OI {
 	 */
 	public Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 
+	/**
+	 * Sendable chooser for autonomous selection
+	 */
+	private SendableChooser<Integer> autoChooser = new SendableChooser<>();
 
 	
 	/**
@@ -56,6 +63,14 @@ public class OI {
 	public OI() {
 		// TODO tie the right buttons to the right commands
 		
+		autoChooser.addDefault("              ",	AutoDrive.AUTO_NONE);
+		autoChooser.addObject("BlueAutoDriveLeft  ", AutoDrive.BLUE_AUTO_LEFT);
+		autoChooser.addObject("BlueAutoDriveMiddle", AutoDrive.BLUE_AUTO_MIDDLE);
+		autoChooser.addObject("BlueAutoDriveRight ", AutoDrive.BLUE_AUTO_RIGHT);
+		autoChooser.addObject("RedAutoDriveLeft ", AutoDrive.RED_AUTO_LEFT);
+		autoChooser.addObject("RedAutoDriveMiddle ", AutoDrive.RED_AUTO_MIDDLE);
+		autoChooser.addObject("RedAutoDriveRight ", AutoDrive.RED_AUTO_RIGHT);
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 	}
 
 	/**
@@ -74,5 +89,9 @@ public class OI {
 	public Joystick getAltJoy() {
 		return altJoy;
 
+	}
+	
+	public SendableChooser<Integer> getAutoChooser() {
+		return autoChooser;
 	}
 }
